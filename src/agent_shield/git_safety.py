@@ -44,15 +44,6 @@ _DANGEROUS_PATTERNS: list[tuple[str, re.Pattern[str], str]] = [
         re.compile(r"git\s+rebase\s+-i\b", re.IGNORECASE),
         "Interactive rebase requires manual input which may not be supported.",
     ),
-    (
-        "push to main/master",
-        re.compile(
-            r"git\s+push\s+.*(?:origin\s+)?(?:main|master)\b"
-            r"(?!.*--force-with-lease)",
-            re.IGNORECASE,
-        ),
-        "Direct push to main/master. Consider using a PR workflow.",
-    ),
 ]
 
 

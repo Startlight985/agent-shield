@@ -269,4 +269,4 @@ def agent_loop(actions):
 
 Apache-2.0 — see [LICENSE](LICENSE).
 
-Built by [AI King (Wang Chen-Syuan)](https://ai-king.dev).
+Built by [Wang Chen-Syuan](https://ai-king.dev).
