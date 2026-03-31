@@ -2,7 +2,7 @@
 
 **Universal AI agent safety guardrails — zero dependencies, works with any framework.**
 
-`agent-shield` is a standalone Python package that protects AI agents from executing dangerous operations. It detects destructive commands (`rm -rf /`, `DROP DATABASE`), secret leaks (API keys, tokens, PEM keys), data exfiltration (uploading credentials via curl/scp), dangerous git operations (force push, reset --hard), and prompt injection attacks (jailbreaks, identity override, encoded payloads). Extracted from [CC Cortex](https://github.com/anthropic-ai-king/cc-cortex) — battle-tested with **200/200 attack detection** and **0/108 false positives**.
+`agent-shield` is a standalone Python package that protects AI agents from executing dangerous operations. It detects destructive commands (`rm -rf /`, `DROP DATABASE`), secret leaks (API keys, tokens, PEM keys), data exfiltration (uploading credentials via curl/scp), dangerous git operations (force push, reset --hard), and prompt injection attacks (jailbreaks, identity override, encoded payloads). Extracted from CC Cortex — battle-tested with **200/200 attack detection** and **0/108 false positives**.
 
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
@@ -176,7 +176,7 @@ All patterns have been validated against real adversarial inputs:
 ## Running Tests
 
 ```bash
-git clone https://github.com/anthropic-ai-king/agent-shield.git
+git clone https://github.com/AIKing9319/agent-shield.git
 cd agent-shield
 pip install -e ".[dev]"
 python -m pytest tests/ -v
@@ -249,19 +249,32 @@ def agent_loop(actions):
 
 ## Relationship to CC Cortex
 
-`agent-shield` contains the **security guards** extracted from [CC Cortex](https://github.com/anthropic-ai-king/cc-cortex), the full cognitive layer for Claude Code. CC Cortex adds 39 more guards covering code quality, cognitive optimization, memory, coordination, and self-improvement.
+`agent-shield` contains the **security guards** extracted
+from CC Cortex - a comprehensive cognitive and safety
+architecture I built from scratch on Claude Code CLI.
+
+CC Cortex is much more than security - it includes 44
+guard classes total, plus original frameworks like CBUA
+(Cognitive-Behavioral Unified Architecture) for AI agent
+metacognition and WIREDO (6-Dimension Delivery
+Verification) for ensuring AI-generated code actually
+works.
+
+CC Cortex is currently under active development and being
+generalized for universal use. The security layer
+(agent-shield) is the first component released as open
+source. The full architecture will be open-sourced as
+generalization completes - funded research accelerates
+this process.
 
 | Feature | agent-shield | CC Cortex |
 |---------|-------------|-----------|
-| Security guards | 5 | 5 (same) |
-| Quality guards | — | 31 |
-| Cognitive guards | — | 6 |
-| Total guards | 5 | 44 |
+| Security guards | 5 modules | 44 classes |
+| Cognitive layer | - | CBUA framework |
+| Delivery verification | - | WIREDO framework |
 | Dependencies | Zero | Zero |
-| Framework | Any AI agent | Claude Code |
-| Auto-backup | — | Yes |
-| Memory/Learning | — | Yes |
-| Multi-instance | — | Yes |
+| Framework | Any AI agent | Claude Code (generalizing) |
+| Status | Open source | Under development |
 
 ---
 
