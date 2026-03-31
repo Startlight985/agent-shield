@@ -1,10 +1,10 @@
-"""Secret scanning — Detect hardcoded API keys, tokens, passwords, and private keys.
+"""Secret scanning  - Detect hardcoded API keys, tokens, passwords, and private keys.
 
 Scans file content for 14 categories of secrets including AWS keys, GitHub/GitLab
 tokens, OpenAI/Anthropic keys, Stripe keys, JWTs, PEM private keys, database
 connection strings, and more.
 
-Ported from CC Cortex secret_scan.py — battle-tested patterns.
+Ported from CC Cortex secret_scan.py  - battle-tested patterns.
 """
 
 from __future__ import annotations

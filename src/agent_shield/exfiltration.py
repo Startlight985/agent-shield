@@ -1,9 +1,9 @@
-"""Data exfiltration detection — Prevent uploading sensitive files to external services.
+"""Data exfiltration detection  - Prevent uploading sensitive files to external services.
 
 Detects curl/wget/scp/rsync uploads of credentials, keys, env files, and
 encrypted pipe exfiltration (tar/openssl/gpg piped to curl/wget).
 
-Ported from CC Cortex exfil_guard.py — battle-tested patterns.
+Ported from CC Cortex exfil_guard.py  - battle-tested patterns.
 """
 
 from __future__ import annotations

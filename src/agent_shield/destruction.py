@@ -1,10 +1,10 @@
-"""Destruction guard — Risk-based destructive operation interception.
+"""Destruction guard  - Risk-based destructive operation interception.
 
 Classifies Bash commands into five risk levels (R0-R4) and blocks
 dangerous operations like `rm -rf /`, `DROP DATABASE`, `mkfs`, fork bombs,
 reverse shells, crypto mining, and 100+ other attack patterns.
 
-Ported from CC Cortex destruction_guard.py — battle-tested with
+Ported from CC Cortex destruction_guard.py  - battle-tested with
 200/200 attack detection and 0/108 false positives.
 """
 
@@ -19,11 +19,11 @@ from agent_shield.types import CheckResult
 R0, R1, R2, R3, R4 = 0, 1, 2, 3, 4
 
 RISK_ICONS = {
-    R0: "\U0001f7e2",  # green
-    R1: "\U0001f7e1",  # yellow
-    R2: "\U0001f7e0",  # orange
-    R3: "\U0001f534",  # red
-    R4: "\u26d4",       # no entry
+    R0: "[R0]",
+    R1: "[R1]",
+    R2: "[R2]",
+    R3: "[R3]",
+    R4: "[R4]",
 }
 
 RISK_LABELS = {
@@ -315,11 +315,11 @@ def classify(command: str) -> tuple[int, str]:
     # Pre-split check: patterns that span pipe/chain boundaries
     for p in R4_PATTERNS:
         if re.search(p, cleaned, re.IGNORECASE):
-            msg = "Catastrophic operation — potentially irreversible total loss"
+            msg = "Catastrophic operation  - potentially irreversible total loss"
             return R4, f"{RISK_ICONS[R4]} {msg}"
     for p in R3_PATTERNS:
         if re.search(p, cleaned, re.IGNORECASE):
-            return R3, f"{RISK_ICONS[R3]} High risk — potential large-scale data loss"
+            return R3, f"{RISK_ICONS[R3]} High risk  - potential large-scale data loss"
 
     parts = _split_commands(cleaned)
     max_risk, max_reason = R0, ""
@@ -330,12 +330,12 @@ def classify(command: str) -> tuple[int, str]:
         if any(re.search(p, part, re.IGNORECASE) for p in R1_PATTERNS):
             if R1 > max_risk:
                 max_risk = R1
-                max_reason = f"{RISK_ICONS[R1]} Low risk — deleting regenerable files"
+                max_reason = f"{RISK_ICONS[R1]} Low risk  - deleting regenerable files"
             continue
         for risk, patterns, label in [
-            (R4, R4_PATTERNS, "Catastrophic operation — potentially irreversible total loss"),
-            (R3, R3_PATTERNS, "High risk — potential large-scale data loss"),
-            (R2, R2_PATTERNS, "Medium risk — may delete important files or data"),
+            (R4, R4_PATTERNS, "Catastrophic operation  - potentially irreversible total loss"),
+            (R3, R3_PATTERNS, "High risk  - potential large-scale data loss"),
+            (R2, R2_PATTERNS, "Medium risk  - may delete important files or data"),
         ]:
             if any(re.search(p, part, re.IGNORECASE) for p in patterns):
                 if risk > max_risk:

@@ -1,4 +1,4 @@
-"""agent-shield — Universal AI agent safety guardrails.
+"""agent-shield  - Universal AI agent safety guardrails.
 
 Zero-dependency Python package that protects any AI agent from executing
 dangerous operations. Works with any framework: Goose, AutoGPT, LangChain,
@@ -48,13 +48,13 @@ def check(
     path: str = "",
     content: str = "",
 ) -> CheckResult:
-    """Universal safety check — one function, all guards.
+    """Universal safety check  - one function, all guards.
 
     Args:
         tool_type: Type of operation. One of:
-            "bash", "shell", "command" — checks destruction, exfil, git, injection
-            "write", "edit", "file" — checks secrets, injection
-            "message", "prompt", "text" — checks injection only
+            "bash", "shell", "command"  - checks destruction, exfil, git, injection
+            "write", "edit", "file"  - checks secrets, injection
+            "message", "prompt", "text"  - checks injection only
         command_or_content: The command string or file content to check.
         path: Optional file path (for secret scanning exemptions).
         content: Alternative to command_or_content for write operations.
@@ -105,7 +105,7 @@ def check(
     if tool in ("message", "prompt", "text", "chat"):
         return injection.check(text)
 
-    # Unknown tool type — run injection check as minimum
+    # Unknown tool type  - run injection check as minimum
     return injection.check(text)
 
 

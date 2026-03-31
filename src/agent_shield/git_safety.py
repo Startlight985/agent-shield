@@ -1,9 +1,9 @@
-"""Git safety — Detect and block dangerous git operations.
+"""Git safety  - Detect and block dangerous git operations.
 
 Catches force push, reset --hard, branch -D, clean -f, checkout -- .,
 interactive rebase, and direct push to main/master.
 
-Ported from CC Cortex git_safety.py — battle-tested patterns.
+Ported from CC Cortex git_safety.py  - battle-tested patterns.
 """
 
 from __future__ import annotations

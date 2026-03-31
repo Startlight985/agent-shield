@@ -1,10 +1,10 @@
-"""Prompt injection detection — NLP-level jailbreak and attack pattern scanning.
+"""Prompt injection detection  - NLP-level jailbreak and attack pattern scanning.
 
 Detects DAN jailbreaks, instruction overrides, system prompt extraction,
 roleplay attacks, delimiter injection, exfiltration intent, identity override,
 encoded payloads (base64/hex), and secret access patterns.
 
-Ported from CC Cortex prompt_injection_guard.py — battle-tested patterns.
+Ported from CC Cortex prompt_injection_guard.py  - battle-tested patterns.
 """
 
 from __future__ import annotations
