@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "agent-shield"
-version = "0.1.0"
-description = "Universal AI agent safety guardrails — zero dependencies, works with any framework"
+version = "0.2.0"
+description = "Universal AI agent safety guardrails + A2A competition agent"
 readme = "README.md"
 license = "Apache-2.0"
 requires-python = ">=3.10"
@@ -19,8 +19,8 @@ keywords = [
     "security",
     "llm",
     "prompt-injection",
-    "destruction-guard",
-    "secret-scanning",
+    "a2a",
+    "agentbeats",
 ]
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -36,10 +36,16 @@ classifiers = [
     "Typing :: Typed",
 ]
 
+[project.optional-dependencies]
+a2a = ["anthropic>=0.40", "openai>=1.0"]
+
+[project.scripts]
+agent-shield-server = "agent_shield.a2a.server:main"
+
 [project.urls]
-Homepage = "https://github.com/anthropic-ai-king/agent-shield"
-Repository = "https://github.com/anthropic-ai-king/agent-shield"
-Issues = "https://github.com/anthropic-ai-king/agent-shield/issues"
+Homepage = "https://github.com/AIKing9319/agent-shield"
+Repository = "https://github.com/AIKing9319/agent-shield"
+Issues = "https://github.com/AIKing9319/agent-shield/issues"
 
 [tool.ruff]
 line-length = 99
