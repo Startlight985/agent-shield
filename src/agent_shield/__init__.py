@@ -1,7 +1,7 @@
 """agent-shield  - Universal AI agent safety guardrails.
 
 Zero-dependency Python package that protects any AI agent from executing
-dangerous operations. Works with any framework: Goose, AutoGPT, LangChain,
+dangerous operations. Works with any framework: AutoGPT, LangChain, CrewAI,
 CrewAI, Claude Code, or custom agents.
 
 Quick start::

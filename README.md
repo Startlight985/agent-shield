@@ -193,7 +193,7 @@ python -m pytest tests/ -v
 
 ## Integration Examples
 
-### Goose (Block dangerous tool calls)
+### Framework adapter (Block dangerous tool calls)
 
 ```python
 from agent_shield import check_tool
