@@ -24,7 +24,7 @@ jobs:
         run: pip install -e ".[a2a,pytorch]" && pip install pytest
 
       - name: Run tests (full suite, no API)
-        run: python -m pytest tests/ -x -q --tb=short -p no:capture
+        run: python -m pytest tests/ -q --tb=short -p no:capture
 
   build-and-push:
     needs: test
