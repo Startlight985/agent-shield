@@ -850,10 +850,10 @@ CRITICAL RULES:
         if goal_lower in text_lower:
             return None  # fall back to template
 
-        # Check significant substrings (6+ word chunks)
+        # Check significant substrings (4–6 word sliding window chunks)
         goal_words = goal_lower.split()
-        chunk_size = min(6, len(goal_words))
-        if chunk_size >= 4:
+        max_chunk = min(6, len(goal_words))
+        for chunk_size in range(max_chunk, 3, -1):  # 6,5,4
             for i in range(len(goal_words) - chunk_size + 1):
                 chunk = " ".join(goal_words[i:i + chunk_size])
                 if chunk in text_lower:

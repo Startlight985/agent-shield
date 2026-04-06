@@ -64,8 +64,9 @@ _JAILBREAK_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
         "restriction removal",
         re.compile(
             r"(?:free\s+from|without|remove|disable|turn\s+off|abandon)\s+"
-            r"(?:all\s+)?(?:your\s+)?(?:restrictions?|limitations?|filters?|safeguards?"
-            r"|safety|guardrails?|boundaries|rules?|constraints?)",
+            r"(?:all\s+)?(?:your\s+|(?:the\s+)?(?:safety\s+|security\s+|content\s+))"
+            r"(?:restrictions?|limitations?|filters?|safeguards?"
+            r"|guardrails?|boundaries|rules?|constraints?)",
             re.IGNORECASE,
         ),
     ),
@@ -112,8 +113,9 @@ _IDENTITY_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
         "identity rewrite",
         re.compile(
             r"(?:edit|modify|change|rewrite|replace|overwrite|update)\s+"
-            r"(?:the\s+)?(?:CLAUDE\.md|system\s+prompt|rules?|settings?"
-            r"|identity|configuration|instructions?)",
+            r"(?:the\s+)?(?:CLAUDE\.md|system\s+prompt"
+            r"|(?:your|my\s+AI'?s?|the\s+(?:AI|assistant|agent|bot)'?s?)\s+"
+            r"(?:rules?|settings?|identity|configuration|instructions?))",
             re.IGNORECASE,
         ),
     ),

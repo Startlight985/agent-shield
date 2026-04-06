@@ -1353,7 +1353,18 @@ class GuardAgent:
         )
 
     def _layer0_regex(self, message: str) -> dict[str, Any]:
-        for mode in ("bash", "write", "message"):
+        # Only run bash/write guards if message looks like a command (not natural language)
+        # Natural language about commands ("explain rm -rf") should NOT trigger destruction guard
+        _CMD_LIKE = re.compile(
+            r"^(?:\$|#|>|%|sudo\s|bash\s|sh\s|cmd\s|powershell\s)|"  # command prompt at start
+            r"^(?:rm|mv|cp|chmod|chown|kill|dd|mkfs|curl|wget|scp|rsync|cat|echo|find|grep)\s|"  # bare command at start of message
+            r"[|;&`]",  # pipe/chain/backtick operators (indicates shell syntax)
+            re.IGNORECASE | re.MULTILINE,
+        )
+        modes = ["message"]
+        if _CMD_LIKE.search(message):
+            modes = ["bash", "write", "message"]
+        for mode in modes:
             r = agent_shield.check(mode, message)
             if r.denied:
                 return {
