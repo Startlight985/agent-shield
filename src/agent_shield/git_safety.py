@@ -3,7 +3,7 @@
 Catches force push, reset --hard, branch -D, clean -f, checkout -- .,
 interactive rebase, and direct push to main/master.
 
-Ported from CC Cortex git_safety.py  - battle-tested patterns.
+Battle-tested patterns for production use.
 """
 
 from __future__ import annotations

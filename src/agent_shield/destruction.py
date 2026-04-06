@@ -4,8 +4,7 @@ Classifies Bash commands into five risk levels (R0-R4) and blocks
 dangerous operations like `rm -rf /`, `DROP DATABASE`, `mkfs`, fork bombs,
 reverse shells, crypto mining, and 100+ other attack patterns.
 
-Ported from CC Cortex destruction_guard.py  - battle-tested with
-200/200 attack detection and 0/108 false positives.
+Battle-tested with 200/200 attack detection and 0/108 false positives.
 """
 
 from __future__ import annotations

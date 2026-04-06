@@ -15,3 +15,16 @@ venv/
 .env
 .env.*
 !.env.example
+
+# Secrets
+.secrets/
+*.key
+*.pem
+credentials.json
+
+# Dev artifacts
+tmp_*.py
+results.xml
+
+# ONNX models (built in Docker, not tracked)
+src/agent_shield/a2a/onnx_models/

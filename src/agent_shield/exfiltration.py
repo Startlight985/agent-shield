@@ -3,7 +3,7 @@
 Detects curl/wget/scp/rsync uploads of credentials, keys, env files, and
 encrypted pipe exfiltration (tar/openssl/gpg piped to curl/wget).
 
-Ported from CC Cortex exfil_guard.py  - battle-tested patterns.
+Battle-tested patterns for production use.
 """
 
 from __future__ import annotations

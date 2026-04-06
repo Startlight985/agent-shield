@@ -4,7 +4,7 @@ Scans file content for 14 categories of secrets including AWS keys, GitHub/GitLa
 tokens, OpenAI/Anthropic keys, Stripe keys, JWTs, PEM private keys, database
 connection strings, and more.
 
-Ported from CC Cortex secret_scan.py  - battle-tested patterns.
+Battle-tested patterns for production use.
 """
 
 from __future__ import annotations
@@ -64,7 +64,7 @@ _PATTERNS: list[tuple[str, re.Pattern[str]]] = [
 
 # Files where secrets are expected (don't scan these)
 _EXEMPT_EXTENSIONS = frozenset([".env.example", ".env.template", ".md"])
-_EXEMPT_BASENAMES = frozenset(["CLAUDE.md", "README.md", "CHANGELOG.md"])
+_EXEMPT_BASENAMES = frozenset(["README.md", "CHANGELOG.md"])
 
 
 def _is_exempt(file_path: str) -> bool:

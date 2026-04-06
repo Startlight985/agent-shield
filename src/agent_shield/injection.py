@@ -4,7 +4,7 @@ Detects DAN jailbreaks, instruction overrides, system prompt extraction,
 roleplay attacks, delimiter injection, exfiltration intent, identity override,
 encoded payloads (base64/hex), and secret access patterns.
 
-Ported from CC Cortex prompt_injection_guard.py  - battle-tested patterns.
+Battle-tested patterns for production use.
 """
 
 from __future__ import annotations
@@ -22,6 +22,7 @@ _JAILBREAK_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
         "DAN jailbreak",
         re.compile(
             r"(?:you\s+are\s+(?:now\s+)?(?:DAN|evil|unrestricted|unfiltered|jailbroken))"
+            r"|(?:(?:become|switch\s+to|enable|activate)\s+(?:DAN|unrestricted|jailbreak))"
             r"|(?:Do\s+Anything\s+Now)"
             r"|(?:act\s+as\s+(?:an?\s+)?(?:unrestricted|unfiltered|evil|hacker))",
             re.IGNORECASE,
@@ -42,8 +43,8 @@ _JAILBREAK_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
     (
         "system prompt extraction",
         re.compile(
-            r"(?:output|show|display|reveal|print|repeat|echo)\s+"
-            r"(?:your\s+)?(?:system\s+prompt|instructions?|rules?|initial\s+prompt"
+            r"(?:output|show|display|reveal|print|repeat|echo|give|tell|share|provide|send|paste|write)\s+"
+            r"(?:me\s+)?(?:your\s+)?(?:system\s+prompt|instructions?|rules?|initial\s+prompt"
             r"|configuration|system\s+message)",
             re.IGNORECASE,
         ),
@@ -62,8 +63,8 @@ _JAILBREAK_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
     (
         "restriction removal",
         re.compile(
-            r"(?:free\s+from|without|remove|disable|turn\s+off)\s+"
-            r"(?:all\s+)?(?:restrictions?|limitations?|filters?|safeguards?"
+            r"(?:free\s+from|without|remove|disable|turn\s+off|abandon)\s+"
+            r"(?:all\s+)?(?:your\s+)?(?:restrictions?|limitations?|filters?|safeguards?"
             r"|safety|guardrails?|boundaries|rules?|constraints?)",
             re.IGNORECASE,
         ),
@@ -228,7 +229,7 @@ def check(text: str) -> CheckResult:
     Returns:
         CheckResult with action="deny" if injection detected.
     """
-    if not text or not isinstance(text, str) or len(text) < 10:
+    if not text or not isinstance(text, str) or len(text) < 5:
         return CheckResult.allow()
 
     triggers: list[str] = []

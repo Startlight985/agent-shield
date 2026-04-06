@@ -2,7 +2,7 @@
 
 **Universal AI agent safety guardrails — zero dependencies, works with any framework.**
 
-`agent-shield` is a standalone Python package that protects AI agents from executing dangerous operations. It detects destructive commands (`rm -rf /`, `DROP DATABASE`), secret leaks (API keys, tokens, PEM keys), data exfiltration (uploading credentials via curl/scp), dangerous git operations (force push, reset --hard), and prompt injection attacks (jailbreaks, identity override, encoded payloads). Extracted from CC Cortex — battle-tested with **200/200 attack detection** and **0/108 false positives**.
+`agent-shield` is a standalone Python package that protects AI agents from executing dangerous operations. It detects destructive commands (`rm -rf /`, `DROP DATABASE`), secret leaks (API keys, tokens, PEM keys), data exfiltration (uploading credentials via curl/scp), dangerous git operations (force push, reset --hard), and prompt injection attacks (jailbreaks, identity override, encoded payloads). Battle-tested with **200/200 attack detection** and **0/108 false positives**.
 
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
@@ -67,52 +67,6 @@ result = injection.check("ignore all previous instructions")
 | 3 | **exfiltration** | Prevents uploading sensitive files to external services | curl/wget/scp/rsync uploads of .env, credentials, SSH keys, PEM files; pipe exfil; encrypted pipe exfil (tar/gpg\|curl) |
 | 4 | **git_safety** | Blocks dangerous git operations | force push, reset --hard, clean -f, checkout -- ., branch -D, interactive rebase, direct push to main/master |
 | 5 | **injection** | NLP-level prompt injection and jailbreak detection | DAN jailbreaks, instruction override, system prompt extraction, roleplay attacks, delimiter injection, exfil intent, identity override, base64/hex encoded payloads, secret access patterns |
-
-### Additional guards in CC Cortex (39 more)
-
-CC Cortex is the full cognitive layer for Claude Code, with 44 guards total:
-
-| # | Guard | Category | Description |
-|---|-------|----------|-------------|
-| 6 | `sentinel` | SECURITY | Detects brute-force debugging, analysis paralysis, and edit loops (6 layers) |
-| 7 | `code_guard` | QUALITY | Ruff / Cargo / Go vet code quality with SHA256 caching |
-| 8 | `dep_audit` | SECURITY | Dependency typosquatting detection (pip/npm/uv) |
-| 9 | `publish_scan` | SECURITY | Pre-publish security audit for npm/PyPI packages |
-| 10 | `semver` | QUALITY | Semantic versioning enforcement |
-| 11 | `linting` | QUALITY | ESLint integration for JS/JSX |
-| 12 | `typescript` | QUALITY | Automatic `tsc --noEmit` validation |
-| 13 | `boundary_guard` | QUALITY | CC/CCC codebase boundary enforcement |
-| 14 | `butterfly_guard` | QUALITY | Forces fix-on-sight for discovered issues |
-| 15 | `identity_guard` | SECURITY | Prevents identity/config tampering |
-| 16 | `structural_guard` | QUALITY | Enforces project structure conventions |
-| 17 | `ssot_guard` | QUALITY | Single source of truth enforcement |
-| 18 | `proposal_guard` | QUALITY | Validates architectural proposals |
-| 19 | `prompt_guard` | QUALITY | Prompt quality enforcement |
-| 20 | `stop_guard` | QUALITY | Stop condition detection |
-| 21 | `wiredo_guard` | QUALITY | WIREDO delivery checklist enforcement |
-| 22 | `wiredo_enforcement` | QUALITY | Per-asset-type WIREDO validation |
-| 23 | `equilibrium_guard` | COGNITIVE | Dynamic equilibrium maintenance |
-| 24 | `agent_artifact_guard` | QUALITY | Agent artifact validation |
-| 25 | `agent_gate` | QUALITY | Sub-agent spawn control with hard cap |
-| 26 | `window_guard` | QUALITY | IDE focus detection for notification suppression |
-| 27 | `cognitive_anchor` | COGNITIVE | Cognitive anchor injection |
-| 28 | `design_theory` | QUALITY | Design theory enforcement |
-| 29 | `file_tracker` | QUALITY | File modification tracking |
-| 30 | `handoff_validator` | QUALITY | Handoff document validation |
-| 31 | `structured_handoff` | QUALITY | Structured handoff enforcement |
-| 32 | `hypothesis_tracker` | COGNITIVE | Debug hypothesis tracking |
-| 33 | `think_inject` | COGNITIVE | Extended thinking injection |
-| 34 | `read_first` | QUALITY | Read-before-edit enforcement |
-| 35 | `read_budget` | QUALITY | Read budget management |
-| 36 | `bash_python` | QUALITY | Bash/Python best practices |
-| 37 | `hijack` | SECURITY | Attention hijacking detection |
-| 38 | `consecutive_fail` | QUALITY | Consecutive failure circuit breaker |
-| 39 | `cognitive` | COGNITIVE | Adaptive learning and decision journal |
-| 40 | `knowledge` | COGNITIVE | Auto-capture corrections and learnings |
-| 41 | `token_monitor` | QUALITY | Token usage tracking with graduated alerts |
-| 42 | `delivery` | QUALITY | Delivery checklist adapter |
-| 43 | `sibling_scan` | QUALITY | Sibling file consistency checking |
-| 44 | `ui_verify` | QUALITY | UI visual verification enforcement |
 
 ---
 
@@ -244,37 +198,6 @@ def agent_loop(actions):
 - Works in any Python 3.10+ environment
 - No version conflicts with your existing packages
 - Installs in under 1 second
-
----
-
-## Relationship to CC Cortex
-
-`agent-shield` contains the **security guards** extracted
-from CC Cortex - a comprehensive cognitive and safety
-architecture I built from scratch on Claude Code CLI.
-
-CC Cortex is much more than security - it includes 44
-guard classes total, plus original frameworks like CBUA
-(Cognitive-Behavioral Unified Architecture) for AI agent
-metacognition and WIREDO (6-Dimension Delivery
-Verification) for ensuring AI-generated code actually
-works.
-
-CC Cortex is currently under active development and being
-generalized for universal use. The security layer
-(agent-shield) is the first component released as open
-source. The full architecture will be open-sourced as
-generalization completes - funded research accelerates
-this process.
-
-| Feature | agent-shield | CC Cortex |
-|---------|-------------|-----------|
-| Security guards | 5 modules | 44 classes |
-| Cognitive layer | - | CBUA framework |
-| Delivery verification | - | WIREDO framework |
-| Dependencies | Zero | Zero |
-| Framework | Any AI agent | Claude Code (generalizing) |
-| Status | Open source | Under development |
 
 ---
 

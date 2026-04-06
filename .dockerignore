@@ -1,0 +1,46 @@
+# Git
+.git
+.gitignore
+
+# Tests (not needed in production image)
+tests/
+test_*.py
+
+# CI/CD
+.github/
+
+# Dev tools
+.ruff_cache/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Documentation
+docs/
+*.md
+!README.md
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets (must never be in image)
+.env
+*.key
+*.pem
+.secrets/
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# ONNX models (built in stage 1, not from host)
+src/agent_shield/a2a/onnx_models/
+
+# NPZ cache (rebuilt at runtime)
+src/agent_shield/a2a/clusters/
