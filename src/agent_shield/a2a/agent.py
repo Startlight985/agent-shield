@@ -1789,7 +1789,7 @@ class GuardAgent:
         _OUTPUT_HARM_STRUCTURED = re.compile(
             # VUL-L5-STRUCT-003: step/phase/stage N: format
             r"(?:(?:step|phase|stage)\s*\d+\s*:.*(?:inject|exploit|payload|reverse.?shell|phishing|credential.?harvest|backdoor|exfiltrat))"
-            r"|(?:(?:import|require|from)\s+\w+.*(?:exec|eval|system|popen|subprocess))"
+            r"|(?:(?:import|require|from)\s+\w+.{0,40}(?:exec\s*\(|eval\s*\(|os\.system|\.system\s*\(|popen|subprocess))"
             r"|(?:(?:curl|wget|nc|ncat)\s+.*\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})"
             # VUL-L5-CODE-001: Reverse shell patterns in code blocks
             r"|(?:bash\s+-i\s+[>&]+\s*/dev/tcp)"
