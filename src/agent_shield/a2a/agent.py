@@ -1358,7 +1358,10 @@ class GuardAgent:
         _CMD_LIKE = re.compile(
             r"^(?:\$|#|>|%|sudo\s|bash\s|sh\s|cmd\s|powershell\s)|"  # command prompt at start
             r"^(?:rm|mv|cp|chmod|chown|kill|dd|mkfs|curl|wget|scp|rsync|cat|echo|find|grep)\s|"  # bare command at start of message
-            r"[|;&`]",  # pipe/chain/backtick operators (indicates shell syntax)
+            r"[|;&`]|"  # pipe/chain/backtick operators (indicates shell syntax)
+            r"SYSTEM\s*(?:MESSAGE|OVERRIDE|ALERT)|"  # fake system message injection
+            r"Skeleton\s+Key|"  # skeleton key attack
+            r"<\|(?:im_start|system)\|>",  # prompt boundary tokens
             re.IGNORECASE | re.MULTILINE,
         )
         modes = ["message"]
