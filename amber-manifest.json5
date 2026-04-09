@@ -4,10 +4,22 @@
   config_schema: {
     type: "object",
     properties: {
+      // Anthropic key — only used by the LEGACY defender path (Safety v2.3.0
+      // L3 LLM judge). The Lambda red-team path (AttackExecutor) was migrated
+      // to OpenAI-compatible (gpt-oss-20b via vLLM) on 2026-04-09 to comply
+      // with Lambda Phase 2 fair-play rule (no proprietary APIs).
       anthropic_api_key: { type: "string", secret: true },
+      // OpenAI-compatible endpoint key (any string when self-hosting vLLM)
       openai_api_key: { type: "string", secret: true },
+      // OpenAI-compatible base URL (e.g. http://vllm-host:8000/v1).
+      // Required for Lambda red-team LLM mode; optional for Safety defender mode.
+      openai_base_url: { type: "string" },
     },
-    required: ["anthropic_api_key"],
+    // Neither key is REQUIRED — agent runs with whatever is provided:
+    // - anthropic_api_key set → Safety defender uses Claude L3 judge
+    // - openai_api_key + openai_base_url set → Lambda attacker uses gpt-oss-20b
+    // - neither set → both paths use template/rule fallback (zero LLM cost)
+    required: [],
     additionalProperties: false,
   },
 
@@ -22,6 +34,7 @@
     env: {
       ANTHROPIC_API_KEY: "${config.anthropic_api_key}",
       OPENAI_API_KEY: "${config.openai_api_key}",
+      OPENAI_BASE_URL: "${config.openai_base_url}",
     },
 
     network: {
